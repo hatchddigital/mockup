@@ -22,7 +22,8 @@
     "pickadate": "3.4.0",
     "requirejs-text": "2.0.10",
     "respond": "1.4.2",
-    "select2": "3.4.5"
+    "select2": "3.4.5",
+    "modernizr": "2.8.1"
   },
   "devDependencies": {
     "expect": "0.3.1",

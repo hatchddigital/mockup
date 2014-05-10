@@ -39,10 +39,11 @@ define([
   'mockup-patterns-formautofocus',
   'mockup-patterns-modal',
   'mockup-patterns-structure',
+  'modernizr',
   'bootstrap-dropdown',
   'bootstrap-collapse',
   'bootstrap-tooltip'
-], function($, Registry, Base) {
+], function($, Registry, Base, Modernizr) {
   'use strict';
 
   // BBB: we need to hook pattern to classes which plone was using until now
@@ -60,6 +61,11 @@ define([
     $(document).ready(function() {
       $('body').addClass('pat-plone');
       Registry.scan($('body'));
+
+      // Fallback for the toolbar Plone logo svg
+      if (!Modernizr.svg) {
+        $("img.toolbarlogo").attr("src", "++resource++plone-toolbarlogo.png");
+      }
     });
   }
 
