@@ -131,6 +131,16 @@ require([
             title: 'Upload',
             description: 'File upload with drag and drop support.',
             url: 'js/patterns/upload/pattern.js'
+          },
+          { id: 'filemanager',
+            title: 'File Manager',
+            description: 'Manage file system-like resources',
+            url: 'js/patterns/filemanager/pattern.js'
+          },
+          { id: 'texteditor',
+            title: 'ACE editor',
+            description: 'Edit files TTW nicely',
+            url: 'js/patterns/texteditor.js'
           }
         ]
       },

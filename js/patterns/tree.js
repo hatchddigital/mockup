@@ -36,12 +36,12 @@
  *
  * Example: example-2
  *    <div class="pat-tree"
- *         data-pat-tree="dataUrl:/tests/json/fileTree.json;
+ *         data-pat-tree="dataUrl:/docs/dev/tests/json/fileTree.json;
  *                        autoOpen:true"></div>
  *
  * Example: example-3
  *    <div class="pat-tree"
- *         data-pat-tree="dataUrl:/tests/json/fileTree.json;
+ *         data-pat-tree="dataUrl:/docs/dev/tests/json/fileTree.json;
  *                        dragAndDrop: true;
  *                        autoOpen: true"></div>
  *

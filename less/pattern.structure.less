@@ -5,6 +5,7 @@
 @icon-font-path: "@{pathPrefix}../bower_components/bootstrap/dist/fonts/";
 @import "../bower_components/bootstrap/less/glyphicons.less";
 @import "../bower_components/bootstrap/less/badges.less";
+@import "popover.less";
 
 .pat-structure {
     table{
@@ -81,15 +82,7 @@
 .pat-structure {
 
     .popover {
-        min-width: 111px;
-        max-width: 500px;
-
         .popover-title {
-
-            padding-bottom: 0;
-            input {
-                margin-bottom: 0;
-            }
             .remove-all {
                 display: inline-block;
                 clear: left;
@@ -104,9 +97,6 @@
                     text-decoration: none;
                 }
             }
-        }
-        &.active {
-            display: block;
         }
     }
 
@@ -214,10 +204,4 @@
 
 .structure-dragging{
     outline: 1px dashed black;
-}
-
-
-.backdrop-popover {
-    background-color: #fff;
-    z-index: 1009;
 }

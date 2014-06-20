@@ -29,7 +29,7 @@ define([
     return url.indexOf('tests/json/') !== -1 ||
            url.indexOf('ace/lib') !== -1 ||
            url.indexOf('.xml') !== -1 ||
-           /.*\.js$/i.test(url);
+           /(?![filemanager])\..*\.js$/i.test(url);
   });
   server.autoRespond = true;
   server.autoRespondAfter = 200;
@@ -550,6 +550,63 @@ define([
       data.object = {UID: 'asdlfkjasdlfkjasdf', Title: 'News', path: '/news', Type: 'Folder'};
     }
     xhr.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify(data));
+  });
+
+  server.respondWith('POST', /filemanager-actions/, function(xhr, id) {
+    xhr.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({}));
+  });
+
+  server.respondWith('GET', /filemanager-actions/, function(xhr, id) {
+    server.autoRespondAfter = 200;
+    var action = getQueryVariable(xhr.url, 'action');
+    var data;
+
+    if (action === 'dataTree'){
+      data = [{
+        label: 'css',
+        folder: true,
+        children: [{
+          label: 'style.css',
+          folder: false
+        },{
+          label: 'tree.css',
+          folder: false
+        }]
+      },{
+        label: 'js',
+        folder: true,
+        children: [{
+          label: 'jquery.js',
+          folder: false
+        },{
+          label: 'tree.js',
+          folder: false
+        }]
+      },{
+        label: 'index.html',
+        folder: false
+      }];
+      xhr.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify(data));
+    } else if (action === 'getFile'){
+
+      var path = getQueryVariable(xhr.url, 'path');
+      var extension = path.substr( path.lastIndexOf('.') + 1 );
+      data = '';
+
+      if (extension === 'js'){
+        data = 'var foo = function() { \n\talert("Hi!"); \n};';
+      } else if (extension === 'css'){
+        data = '#content.highlight { \n\tbackground-color: #D1F03A; \n}';
+      } else if (extension === 'html'){
+        data = '<html>\n\t<body>\n\t\t<p>Hi!</p>\n\t</body>\n</html>';
+      } else {
+        data = 'foobar';
+      }
+      xhr.respond(200, {'Content-Type': 'application/json'}, JSON.stringify({
+        path: path,
+        data: data
+      }));
+    }
   });
 
   return server;
