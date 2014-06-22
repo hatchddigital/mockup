@@ -221,6 +221,27 @@ define([
             self.$tabs.append($item);
             $('.remove', $item).click(function(e){
               e.preventDefault();
+              if( $(this).parent().hasClass('active') )
+              {
+                var sibilings = $(this).parent().siblings();
+                if( sibilings.length > 0 )
+                {
+                  if( $(this).parent().prev().length > 0 )
+                  {
+                    var item = $(this).parent().prev();
+                  }
+                  else
+                  {
+                    var item = $(this).parent().next();
+                  }
+                  $(item).addClass('active');
+                  self.openEditor($(item).attr('data-path'));
+                }
+                else
+                {
+                  self.ace.setText("");
+                }
+              }
               $(this).parent().remove();
             });
             $('.select', $item).click(function(e){
