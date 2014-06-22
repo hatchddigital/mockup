@@ -284,6 +284,7 @@ define([
       });
       self.ace.setSyntax(path);
       self.ace.setText(self.fileData[path].data);
+      self.ace.editor.clearSelection();
     },
     getSelectedNode: function() {
       return this.$tree.tree('getSelectedNode');
