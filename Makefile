@@ -22,6 +22,9 @@ bundle-widgets:
 bundle-structure:
 	NODE_PATH=$(NODE_PATH) $(GRUNT) bundle-structure
 
+bundle-filemanager:
+	NODE_PATH=$(NODE_PATH) $(GRUNT) bundle-filemanager
+
 bundle-barceloneta:
 	mkdir -p build
 	NODE_PATH=$(NODE_PATH) $(GRUNT) bundle-barceloneta

@@ -5,7 +5,7 @@
 
   var requirejsOptions = {
     baseUrl: './',
-    optimize: 'uglify',
+    optimize: 'none',
     paths: {
       'JSXTransformer': 'bower_components/react/JSXTransformer',
       'ace': 'bower_components/ace-builds/src-min/ace',
@@ -35,6 +35,7 @@
       'mockup-bundles-docs': 'js/bundles/docs',
       'mockup-bundles-plone': 'js/bundles/plone',
       'mockup-bundles-structure': 'js/bundles/structure',
+      'mockup-bundles-filemanager': 'js/bundles/filemanager',
       'mockup-bundles-tiles': 'js/bundles/widgets',
       'mockup-bundles-widgets': 'js/bundles/widgets',
       'mockup-docs': 'bower_components/mockup-core/js/docs/app',
