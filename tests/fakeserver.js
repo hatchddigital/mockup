@@ -566,9 +566,11 @@ define([
         label: 'css',
         folder: true,
         children: [{
+          id: 1,
           label: 'style.css',
           folder: false
         },{
+          id: 2,
           label: 'tree.css',
           folder: false
         }]
@@ -576,13 +578,16 @@ define([
         label: 'js',
         folder: true,
         children: [{
+          id: 3,
           label: 'jquery.js',
           folder: false
         },{
+          id: 4,
           label: 'tree.js',
           folder: false
         }]
       },{
+        id: 5,
         label: 'index.html',
         folder: false
       }];

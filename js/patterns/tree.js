@@ -77,7 +77,8 @@ define([
       dragAndDrop: false,
       autoOpen: false,
       selectable: true,
-      keyboardSupport: true
+      keyboardSupport: true,
+      onLoad: null
     },
     init: function() {
       var self = this;
@@ -99,7 +100,18 @@ define([
       if (self.options.data && typeof(self.options.data) === 'string') {
         self.options.data = $.parseJSON(self.options.data);
       }
-      self.tree = self.$el.tree(self.options);
+      if (self.options.onLoad !== null){
+        // delay generating tree...
+        var options = $.extend({}, self.options);
+        $.getJSON(options.dataUrl, function(data) {
+          options.data = data;
+          delete options.dataUrl;
+          self.tree = self.$el.tree(options);
+          self.options.onLoad(self);
+        });
+      } else {
+        self.tree = self.$el.tree(self.options);
+      }
     }
   });
 

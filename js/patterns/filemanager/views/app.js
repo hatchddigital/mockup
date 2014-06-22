@@ -180,6 +180,14 @@ define([
       self.$tree = self.$('.tree');
       self.$nav = self.$('nav');
       self.$tabs = $('ul.nav', self.$nav);
+      self.treeConfig.onLoad = function(tree) {
+        // on loading initial data, activate first node if available
+        var node = self.$tree.tree('getNodeById', 1);
+        if (node){
+          self.$tree.tree('selectNode', node);
+          self.openFile({node: node});
+        }
+      };
       self.tree = new Tree(self.$tree, self.treeConfig);
       self.$tree.bind('tree.click', function(e) {
         self.openFile(e);
@@ -243,7 +251,9 @@ define([
       if (self.ace !== undefined){
         self.ace.editor.destroy();
       }
-      self.ace = new TextEditor(self.$editor, {});
+      self.ace = new TextEditor(self.$editor, {
+        width: self.$editor.width()
+      });
       self.ace.setSyntax(path);
       self.ace.setText(self.fileData[path].data);
     }
