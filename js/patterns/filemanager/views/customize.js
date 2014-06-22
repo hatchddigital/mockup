@@ -35,39 +35,66 @@ define([
     className: 'popover customize',
     title: _.template('Add customization'),
     content: _.template(
-      '<div class="form-group">' +
-        '<label for="search-field">Search</label>' +
-        '<input type="text" class="form-control" ' +
-                'id="search-field" placeholder="Search resources...">' +
-      '</div>' +
-      '<button class="btn btn-block btn-danger">Customize</button>'
+      '<form>' +
+        '<div class="input-group">' +
+          '<input type="text" class="search form-control" ' +
+                  'id="search-field" placeholder="Search resources...">' +
+          '<span class="input-group-btn">' +
+            '<input type="submit" class="btn btn-primary" value="Search"/>' +
+          '</span>' +
+        '</div>' +
+      '</form>' +
+      '<ul class="results list-group">' +
+      '</ul>'
     ),
-    events: {
-      'click button': 'customizeButtonClicked'
-    },
     initialize: function(options) {
       this.app = options.app;
       PopoverView.prototype.initialize.apply(this, [options]);
     },
-    customizeButtonClicked: function(e) {
+    render: function() {
       var self = this;
-      var $input = self.$('input');
-      var resource = $input.val();
-      if (resource){
-        self.app.doAction('customize', {
-          type: 'POST',
-          data: {
-            resource: resource
-          },
-          success: function(data) {
-            self.hide();
-            self.app.$tree.tree('reload');
+      PopoverView.prototype.render.call(this);
+      self.$form = self.$('form');
+      self.$results = self.$('.results');
+      self.$form.submit(function(e){
+        e.preventDefault();
+        $.ajax({
+          url: self.app.options.resourceSearchUrl,
+          dataType: 'json',
+          success: function(data){
+            self.$results.empty();
+            _.each(data, function(item){
+              var $item = $(
+                '<li class="list-group-item" data-id="' + item.id + '">' +
+                  '<span class="badge"><a href=#">customize</a></span>' +
+                  item.id +
+                '</li>');
+              $('a', $item).click(function(e){
+                e.preventDefault();
+                self.customize($(this).parents('li').eq(0).attr('data-id'));
+              });
+              self.$results.append($item);
+            });
           }
         });
-      } else {
-        self.$('.form-group').addClass('has-error');
-      }
-      // XXX show loading
+      });
+      return self;
+    },
+    customize: function(resource) {
+      var self = this;
+      self.app.doAction('customize', {
+        type: 'POST',
+        data: {
+          resource: resource
+        },
+        success: function(data) {
+          self.hide();
+          // clear out
+          self.$('input.search').attr('value', '');
+          self.$results.empty();
+          self.app.$tree.tree('reload');
+        }
+      });
     }
   });
 

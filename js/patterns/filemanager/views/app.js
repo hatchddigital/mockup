@@ -87,14 +87,6 @@ define([
           context: 'default'
         })
       });
-      var customizeView = new CustomizeView({
-        triggerView: new ButtonView({
-          id: 'customize',
-          title: 'Add New Override',
-          tooltip: 'find resource to customize',
-          context: 'default'
-        })
-      });
       var renameView = new RenameView({
         triggerView: new ButtonView({
           id: 'rename',
@@ -115,14 +107,12 @@ define([
       self.views = [
         newFolderView,
         addNewView,
-        customizeView,
         renameView,
         deleteView
       ];
       var mainButtons = [
         newFolderView.triggerView,
-        addNewView.triggerView,
-        customizeView.triggerView
+        addNewView.triggerView
       ];
 
       if (self.options.uploadUrl){
@@ -136,7 +126,20 @@ define([
           app: self
         });
         self.views.push(uploadView);
-        mainButtons.splice(2, 0, uploadView.triggerView);
+        mainButtons.push(uploadView.triggerView);
+      }
+      if (self.options.resourceSearchUrl){
+        var customizeView = new CustomizeView({
+          triggerView: new ButtonView({
+            id: 'customize',
+            title: 'Add New Override',
+            tooltip: 'find resource to customize',
+            context: 'default'
+          }),
+          app: self
+        });
+        self.views.push(customizeView);
+        mainButtons.push(customizeView.triggerView);
       }
 
       self.toolbar = new Toolbar({

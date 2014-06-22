@@ -5,6 +5,7 @@
  *    aceConfig(object): ace configuration ({})
  *    actionUrl(string): base url to get/put data. Action is passed is an a parameters, ?action=(dataTree, newFile, deleteFile, getFile, saveFile)
  *    uploadUrl(string): url to upload files to
+ *    resourceSearchUrl(string: url to search for resources to customize
  *
  * Documentation:
  *
@@ -17,13 +18,15 @@
  *
  * Example: example-1
  *    <div class="pat-filemanager"
- *         data-pat-filemanager="actionUrl:/filemanager-actions">
+ *         data-pat-filemanager="actionUrl:/filemanager-actions;
+ *                               resourceSearchUrl:/search-resources;">
  *    </div>
  *
  * Example: example-2
  *    <div class="pat-filemanager"
  *         data-pat-filemanager="actionUrl:/filemanager-actions;
- *                               uploadUrl:/upload">
+ *                               uploadUrl:/upload;
+ *                               resourceSearchUrl:/search-resources;">
  *    </div>
  *
  * License:
@@ -57,7 +60,8 @@ define([
     defaults: {
       aceConfig: {},
       actionUrl: null,
-      uploadUrl: null
+      uploadUrl: null,
+      resourceSearchUrl: null
     },
     treeConfig: {
       autoOpen: true

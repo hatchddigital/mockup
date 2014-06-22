@@ -614,6 +614,15 @@ define([
     }
   });
 
+  server.respondWith('GET', /search-resources/, function(xhr, id) {
+    server.autoRespondAfter = 200;
+    xhr.respond(200, {'Content-Type': 'application/json'}, JSON.stringify([{
+      id: 'plone.app.layout.viewlets.title.pt'
+    }, {
+      id: 'plonetheme.sunburst.resources.logo.png'
+    }]));
+  });
+
   return server;
 
 });
