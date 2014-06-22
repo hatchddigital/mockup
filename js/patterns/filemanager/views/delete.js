@@ -35,7 +35,8 @@ define([
     className: 'popover delete',
     title: _.template('Delete'),
     content: _.template(
-      '<p>Are you sure you want to delete this resource</p>' +
+      '<span class="current-path"></span>' +
+      '<p>Are you sure you want to delete this resource?</p>' +
       '<button class="btn btn-block btn-danger">Yes, delete</button>'
     ),
     events: {
@@ -45,12 +46,20 @@ define([
       this.app = options.app;
       PopoverView.prototype.initialize.apply(this, [options]);
     },
+    toggle: function(button, e) {
+      PopoverView.prototype.toggle.apply(this, [button, e]);
+      var self = this;
+      if (!self.opened) {
+        return;
+      }
+      self.$('.current-path').html(self.app.getNodePath());
+    },
     deleteButtonClicked: function(e) {
       var self = this;
       self.app.doAction('delete', {
         type: 'POST',
         data: {
-          path: self.app.$tree.tree('getSelectedNode').label
+          path: self.app.getNodePath()
         },
         success: function(data) {
           self.hide();

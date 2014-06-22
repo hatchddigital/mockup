@@ -267,13 +267,30 @@ define([
       return this.$tree.tree('getSelectedNode');
     },
     getNodePath: function(node) {
-      var path = node.name;
-      // work our way back now
-      while (node.parent && node.parent.name){
-        node = node.parent;
-        path = node.name + '/' + path;
+      var self = this;
+      if(node === undefined){
+        node = self.getSelectedNode();
       }
-      return '/' + path;
+      var path = self.getFolderPath(node.parent);
+      if (path !== '/'){
+        path += '/';
+      }
+      return path + node.name;
+    },
+    getFolderPath: function(node){
+      var self = this;
+      if(node === undefined){
+        node = self.getSelectedNode();
+      }
+      var parts = [];
+      if (!node.folder && node.name){
+        node = node.parent;
+      }
+      while (node.name){
+        parts.push(node.name);
+        node = node.parent;
+      }
+      return '/' + parts.join('/');
     }
   });
 

@@ -35,6 +35,7 @@ define([
     className: 'popover addnew',
     title: _.template('Add new file'),
     content: _.template(
+      '<span class="current-path"></span>' +
       '<div class="form-group">' +
         '<label for="filename-field">Filename</label>' +
         '<input type="text" class="form-control" ' +
@@ -49,6 +50,14 @@ define([
       this.app = options.app;
       PopoverView.prototype.initialize.apply(this, [options]);
     },
+    toggle: function(button, e) {
+      PopoverView.prototype.toggle.apply(this, [button, e]);
+      var self = this;
+      if (!self.opened) {
+        return;
+      }
+      self.$('.current-path').html(self.app.getFolderPath());
+    },
     addButtonClicked: function(e) {
       var self = this;
       var $input = self.$('input');
@@ -58,6 +67,7 @@ define([
           type: 'POST',
           data: {
             filename: filename,
+            path: self.getFolderPath()
           },
           success: function(data) {
             self.hide();

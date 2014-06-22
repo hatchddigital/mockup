@@ -65,11 +65,10 @@ define([
       var $input = self.$('input');
       var filename = $input.val();
       if (filename){
-        var node = self.app.getSelectedNode();
         self.app.doAction('renameFile', {
           type: 'POST',
           data: {
-            path: self.app.getNodePath(node),
+            path: self.app.getNodePath(),
             filename: filename
           },
           success: function(data) {
