@@ -6,6 +6,7 @@
  *    actionUrl(string): base url to get/put data. Action is passed is an a parameters, ?action=(dataTree, newFile, deleteFile, getFile, saveFile)
  *    uploadUrl(string): url to upload files to
  *    resourceSearchUrl(string: url to search for resources to customize
+ *    translations(object): mapping of translation strings
  *
  * Documentation:
  *
@@ -61,7 +62,32 @@ define([
       aceConfig: {},
       actionUrl: null,
       uploadUrl: null,
-      resourceSearchUrl: null
+      resourceSearchUrl: null,
+      translations: {
+        add_new_file: 'New file',
+        add_new_file_tooltip: 'Add new file to current folder',
+        add_override: 'Add new override',
+        add_override_tooltip: 'Find resource in plone to override',
+        delete: 'Delete',
+        delete_tooltip: 'Delete currently selected file',
+        new_folder: 'New folder',
+        new_folder_tooltip: 'Add new folder to current directory',
+        rename: 'Rename',
+        rename_tooltip: 'Rename currently selected resource',
+        upload: 'Upload',
+        upload_tooltip: 'Upload file to current directory',
+        filename: 'Filename',
+        enter_filename: 'Enter filename',
+        add: 'Add',
+        search: 'Search',
+        search_resources: 'Search resources',
+        customize: 'Customize',
+        yes_delete: 'Yes, delete',
+        delete_question: 'Are you sure you want to delete this resource?',
+        folder_name: 'Folder name',
+        enter_folder_name: 'Enter folder name',
+        save: 'Save'
+      }
     },
     treeConfig: {
       autoOpen: true

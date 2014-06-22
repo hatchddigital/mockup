@@ -27,38 +27,39 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'js/patterns/filemanager/views/basepopover',
-  'mockup-patterns-upload'
-], function($, _, Backbone, PopoverView, Upload) {
+  'js/ui/views/popover'
+], function($, _, Backbone, PopoverView) {
   'use strict';
 
-  var UploadView = PopoverView.extend({
-    className: 'popover upload',
-    title: _.template('<%= translations.upload %>'),
-    content: _.template(
-      '<span class="current-path"></span>' +
-      '<input type="text" name="upload" style="display:none" />' +
-      '<div class="uploadify-me"></div>'),
+  var FileManagerPopover = PopoverView.extend({
+    className: 'popover',
+    title: _.template('nothing'),
+    content: _.template('<div/>'),
+    initialize: function(options) {
+      this.app = options.app;
+      options.translations = this.app.options.translations;
+      PopoverView.prototype.initialize.apply(this, [options]);
+    },
     render: function() {
       var self = this;
       PopoverView.prototype.render.call(this);
-      self.upload = new Upload(self.$('.uploadify-me').addClass('pat-upload'), {
-        url: self.app.options.uploadUrl,
-        success: function() {
-        }
-      });
-      return this;
+      return self;
     },
     toggle: function(button, e) {
-      /* we need to be able to change the current default upload directory */
       PopoverView.prototype.toggle.apply(this, [button, e]);
       var self = this;
-      if (!this.opened) {
+      if (!self.opened) {
         return;
       }
+      var $path = self.$('.current-path');
+      if ($path.length !== 0){
+        $path.html(self.getPath());
+      }
+    },
+    getPath: function() {
+      return this.app.getFolderPath();
     }
-
   });
 
-  return UploadView;
+  return FileManagerPopover;
 });

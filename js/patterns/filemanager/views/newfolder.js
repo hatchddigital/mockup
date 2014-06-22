@@ -27,36 +27,24 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'js/ui/views/popover'
-], function($, _, Backbone, PopoverView, utils) {
+  'js/patterns/filemanager/views/basepopover'
+], function($, _, Backbone, PopoverView) {
   'use strict';
 
   var AddNewView = PopoverView.extend({
     className: 'popover addfolder',
-    title: _.template('Add new folder'),
+    title: _.template('<%= translations.new_folder %>'),
     content: _.template(
       '<span class="current-path"></span>' +
       '<div class="form-group">' +
-        '<label for="filename-field">Folder Name</label>' +
+        '<label for="filename-field"><%= translations.folder_name %></label>' +
         '<input type="email" class="form-control" ' +
-                'id="filename-field" placeholder="Enter folder name">' +
+                'id="filename-field" placeholder="<%= translations.enter_folder_name %>">' +
       '</div>' +
-      '<button class="btn btn-block btn-primary">Add</button>'
+      '<button class="btn btn-block btn-primary"><%= translations.add %></button>'
     ),
     events: {
       'click button': 'addButtonClicked'
-    },
-    initialize: function(options) {
-      this.app = options.app;
-      PopoverView.prototype.initialize.apply(this, [options]);
-    },
-    toggle: function(button, e) {
-      PopoverView.prototype.toggle.apply(this, [button, e]);
-      var self = this;
-      if (!self.opened) {
-        return;
-      }
-      self.$('.current-path').html(self.app.getFolderPath());
     },
     addButtonClicked: function(e) {
       var self = this;

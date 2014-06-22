@@ -62,19 +62,20 @@ define([
     initialize: function(options) {
       var self = this;
       BaseView.prototype.initialize.apply(self, [options]);
+      var translations = self.options.translations;
 
       self.fileData = {};
       self.saveBtn = new ButtonView({
         id: 'save',
-        title: 'Save',
+        title: translations.save,
         context: 'success'
       });
 
       var newFolderView = new NewFolderView({
         triggerView: new ButtonView({
           id: 'newfolder',
-          title: 'New Folder',
-          tooltip: 'Add new folder',
+          title: translations.new_folder,
+          tooltip: translations.new_folder_tooltip,
           context: 'default'
         }),
         app: self
@@ -82,8 +83,8 @@ define([
       var addNewView = new AddNewView({
         triggerView: new ButtonView({
           id: 'addnew',
-          title: 'New File',
-          tooltip: 'Add new file',
+          title: translations.add_new_file,
+          tooltip: translations.add_new_file_tooltip,
           context: 'default'
         }),
         app: self
@@ -91,8 +92,8 @@ define([
       var renameView = new RenameView({
         triggerView: new ButtonView({
           id: 'rename',
-          title: 'Rename',
-          tooltip: 'Rename resource',
+          title: translations.rename,
+          tooltip: translations.rename_tooltip,
           context: 'default'
         }),
         app: self
@@ -100,8 +101,8 @@ define([
       var deleteView = new DeleteView({
         triggerView: new ButtonView({
           id: 'delete',
-          title: 'Delete',
-          tooltip: 'Delete resource',
+          title: translations.delete,
+          tooltip: translations.delete_tooltip,
           context: 'danger'
         }),
         app: self
@@ -122,8 +123,8 @@ define([
         var uploadView = new UploadView({
           triggerView: new ButtonView({
             id: 'upload',
-            title: 'Upload',
-            tooltip: 'Upload new file',
+            title: translations.upload,
+            tooltip: translations.upload_tooltip,
             context: 'default'
           }),
           app: self
@@ -135,8 +136,8 @@ define([
         var customizeView = new CustomizeView({
           triggerView: new ButtonView({
             id: 'customize',
-            title: 'Add New Override',
-            tooltip: 'find resource to customize',
+            title: translations.add_override,
+            tooltip: translations.add_override_tooltip,
             context: 'default'
           }),
           app: self

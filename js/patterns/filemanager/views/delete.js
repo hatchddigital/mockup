@@ -27,32 +27,23 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'js/ui/views/popover'
+  'js/patterns/filemanager/views/basepopover'
 ], function($, _, Backbone, PopoverView) {
   'use strict';
 
   var DeleteView = PopoverView.extend({
     className: 'popover delete',
-    title: _.template('Delete'),
+    title: _.template('<%= translations.delete %>'),
     content: _.template(
       '<span class="current-path"></span>' +
-      '<p>Are you sure you want to delete this resource?</p>' +
-      '<button class="btn btn-block btn-danger">Yes, delete</button>'
+      '<p><%= translations.delete_question %></p>' +
+      '<button class="btn btn-block btn-danger"><%= translations.yes_delete %></button>'
     ),
     events: {
       'click button': 'deleteButtonClicked'
     },
-    initialize: function(options) {
-      this.app = options.app;
-      PopoverView.prototype.initialize.apply(this, [options]);
-    },
-    toggle: function(button, e) {
-      PopoverView.prototype.toggle.apply(this, [button, e]);
-      var self = this;
-      if (!self.opened) {
-        return;
-      }
-      self.$('.current-path').html(self.app.getNodePath());
+    getPath: function() {
+      return this.app.getNodePath();
     },
     deleteButtonClicked: function(e) {
       var self = this;
