@@ -56,7 +56,7 @@ define([
         return;
       }
       var $input = self.$('input');
-      $input.val(self.$tree.tree('getSelectedNode').label);
+      $input.val(self.app.$tree.tree('getSelectedNode').label);
     },
     renameButtonClicked: function(e) {
       var self = this;
@@ -66,7 +66,7 @@ define([
         self.app.doAction('renameFile', {
           type: 'POST',
           data: {
-            path: self.$tree.tree('getSelectedNode').label,
+            path: self.app.$tree.tree('getSelectedNode').label,
             filename: filename
           },
           success: function(data) {
