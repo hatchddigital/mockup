@@ -85,7 +85,8 @@ define([
           title: 'New File',
           tooltip: 'Add new file',
           context: 'default'
-        })
+        }),
+        app: self
       });
       var renameView = new RenameView({
         triggerView: new ButtonView({
@@ -93,7 +94,8 @@ define([
           title: 'Rename',
           tooltip: 'Rename resource',
           context: 'default'
-        })
+        }),
+        app: self
       });
       var deleteView = new DeleteView({
         triggerView: new ButtonView({
@@ -101,7 +103,8 @@ define([
           title: 'Delete',
           tooltip: 'Delete resource',
           context: 'danger'
-        })
+        }),
+        app: self
       });
 
       self.views = [
@@ -259,6 +262,18 @@ define([
       });
       self.ace.setSyntax(path);
       self.ace.setText(self.fileData[path].data);
+    },
+    getSelectedNode: function() {
+      return this.$tree.tree('getSelectedNode');
+    },
+    getNodePath: function(node) {
+      var path = node.name;
+      // work our way back now
+      while (node.parent && node.parent.name){
+        node = node.parent;
+        path = node.name + '/' + path;
+      }
+      return '/' + path;
     }
   });
 

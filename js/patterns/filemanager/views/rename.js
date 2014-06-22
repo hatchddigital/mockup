@@ -33,8 +33,9 @@ define([
 
   var RenameView = PopoverView.extend({
     className: 'popover addnew',
-    title: _.template('Add new file'),
+    title: _.template('Rename'),
     content: _.template(
+      '<span class="current-path"></span>' +
       '<div class="form-group">' +
         '<label for="filename-field">Filename</label>' +
         '<input type="text" class="form-control" ' +
@@ -55,18 +56,20 @@ define([
       if (!self.opened) {
         return;
       }
-      var $input = self.$('input');
-      $input.val(self.app.$tree.tree('getSelectedNode').label);
+      var node = self.app.getSelectedNode();
+      self.$('input').val(node.name);
+      self.$('.current-path').html(self.app.getNodePath(node));
     },
     renameButtonClicked: function(e) {
       var self = this;
       var $input = self.$('input');
       var filename = $input.val();
       if (filename){
+        var node = self.app.getSelectedNode();
         self.app.doAction('renameFile', {
           type: 'POST',
           data: {
-            path: self.app.$tree.tree('getSelectedNode').label,
+            path: self.app.getNodePath(node),
             filename: filename
           },
           success: function(data) {
