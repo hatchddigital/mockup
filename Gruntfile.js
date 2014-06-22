@@ -56,6 +56,9 @@ module.exports = function(grunt) {
   mockup.registerBundle('structure', {}, {
     url: '++resource++wildcard.foldercontents-structure'
   });
+  mockup.registerBundle('filemanager', {}, {
+    url: '++resource++plone.resourceeditor-filemanager'
+  });
 
   mockup.registerBundle('plone', {
     copy: {
