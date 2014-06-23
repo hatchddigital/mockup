@@ -28,7 +28,7 @@ define([
     //whenever the this returns true the request will not faked
     return url.indexOf('tests/json/') !== -1 ||
            url.indexOf('ace/lib') !== -1 ||
-           url.indexOf('.xml') !== -1 ||
+           /(?![filemanager])\..*\.xml$/i.test(url) ||
            /(?![filemanager])\..*\.js$/i.test(url);
   });
   server.autoRespond = true;
@@ -590,6 +590,10 @@ define([
         id: 5,
         label: 'index.html',
         folder: false
+      },{
+        id: 6,
+        label: 'rules.xml',
+        folder: false
       }];
       xhr.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify(data));
     } else if (action === 'getFile'){
@@ -604,6 +608,16 @@ define([
         data = '#content.highlight { \n\tbackground-color: #D1F03A; \n}';
       } else if (extension === 'html'){
         data = '<html>\n\t<body>\n\t\t<p>Hi!</p>\n\t</body>\n</html>';
+      } else if (extension === 'xml'){
+        data = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<rules\n' +
+            'xmlns="http://namespaces.plone.org/diazo"\n' +
+            'xmlns:css="http://namespaces.plone.org/diazo/css"\n' +
+            'xmlns:xsl="http://www.w3.org/1999/XSL/Transform">\n\n' +
+            '<theme href="theme.html" />\n' +
+            '<replace css:theme="html head title" css:content="html head title" />\n' +
+            '<replace css:content-children="#content" css:theme-children="#content" />\n' +
+          '</rules>';
       } else {
         data = 'foobar';
       }

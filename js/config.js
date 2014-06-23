@@ -67,6 +67,7 @@
       'mockup-patterns-upload': 'js/patterns/upload/pattern',
       'mockup-patterns-texteditor': 'js/patterns/texteditor',
       'mockup-patterns-filemanager': 'js/patterns/filemanager/pattern',
+      'mockup-patterns-thememapper': 'js/patterns/thememapper/pattern',
       'mockup-registry': 'bower_components/mockup-core/js/registry',
       'mockup-router': 'js/router',
       'mockup-utils': 'js/utils',

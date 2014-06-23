@@ -138,10 +138,16 @@ require([
             url: 'js/patterns/filemanager/pattern.js'
           },
           { id: 'texteditor',
-            title: 'ACE editor',
+            title: 'Text editor',
             description: 'Edit files TTW nicely',
             url: 'js/patterns/texteditor.js'
+          },
+          { id: 'thememapper',
+            title: 'Theme Mapper',
+            description: 'Map theme rules',
+            url: 'js/patterns/thememapper/pattern.js'
           }
+
         ]
       },
       { id: 'contribute',

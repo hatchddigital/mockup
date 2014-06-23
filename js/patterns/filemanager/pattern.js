@@ -1,11 +1,10 @@
-
 /* Filemanager pattern.
  *
  * Options:
  *    aceConfig(object): ace configuration ({})
  *    actionUrl(string): base url to get/put data. Action is passed is an a parameters, ?action=(dataTree, newFile, deleteFile, getFile, saveFile)
  *    uploadUrl(string): url to upload files to
- *    resourceSearchUrl(string: url to search for resources to customize
+ *    resourceSearchUrl(string): url to search for resources to customize
  *    translations(object): mapping of translation strings
  *
  * Documentation:

@@ -81,7 +81,7 @@ define([
   'use strict';
 
   var AcePattern = Base.extend({
-    name: 'ace',
+    name: 'texteditor',
     defaults: {
       theme: null,
       mode: 'text',
