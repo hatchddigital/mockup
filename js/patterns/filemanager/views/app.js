@@ -221,24 +221,19 @@ define([
             self.$tabs.append($item);
             $('.remove', $item).click(function(e){
               e.preventDefault();
-              if( $(this).parent().hasClass('active') )
+              if ($(this).parent().hasClass('active'))
               {
-                var sibilings = $(this).parent().siblings();
-                if( sibilings.length > 0 )
-                {
-                  if( $(this).parent().prev().length > 0 )
-                  {
-                    var item = $(this).parent().prev();
+                var $siblings = $(this).parent().siblings();
+                if ($siblings.length > 0){
+                  var $item;
+                  if ($(this).parent().prev().length > 0){
+                    $item = $(this).parent().prev();
+                  } else {
+                    $item = $(this).parent().next();
                   }
-                  else
-                  {
-                    var item = $(this).parent().next();
-                  }
-                  $(item).addClass('active');
-                  self.openEditor($(item).attr('data-path'));
-                }
-                else
-                {
+                  $item.addClass('active');
+                  self.openEditor($item.attr('data-path'));
+                } else {
                   self.ace.setText("");
                 }
               }
