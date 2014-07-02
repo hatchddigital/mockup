@@ -58,7 +58,7 @@ define([
       },
       title: null,
       titleSelector: 'h1:first',
-      buttons: '.formControls > input[type="submit"]',
+      buttons: '.formControls:last > input[type="submit"]',
       content: '#content',
       automaticallyAddButtonActions: true,
       loadLinksWithinModal: true,

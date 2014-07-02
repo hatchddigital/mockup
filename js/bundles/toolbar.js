@@ -195,7 +195,7 @@ define([
           displayInModal: false
         }
       };
-      $('#folderChangeDefaultPage, #folderChangeDefaultPage a, #contextSetDefaultPage a', self.$el)
+      $('.toolbar-modal, #addTile, #addTile a, #folderChangeDefaultPage, #folderChangeDefaultPage a, #contextSetDefaultPage a', self.$el)
         .addClass('pat-modal')
         .patternModal(defaultPage);
 
