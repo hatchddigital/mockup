@@ -34,6 +34,7 @@ define([
   var utils = {
 
     parseBodyTag: function(txt){
+      return (/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[1];
       return $((/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[0]
           .replace('<body', '<div').replace('</body>', '</div>')).eq(0).html();
     },

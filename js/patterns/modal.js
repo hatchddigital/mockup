@@ -548,9 +548,14 @@ define([
       }).done(function(response, textStatus, xhr) {
         self.ajaxXHR = undefined;
         self.$loading.hide();
+        // This is flawed, if the body contains <script> tags they're executed
+        // before being appended to the body, any $('#id') targets wont work
         self.$raw = $('<div />').append($(utils.parseBodyTag(response)));
         self.trigger('after-ajax', self, textStatus, xhr);
         self._show();
+        // This is a giant hack, re-append the javascript to *nothing* so inline
+        // javascript can re-run
+        var foo = $('<div />').append($(utils.parseBodyTag(response)));
       });
     },
     createTargetModal: function() {
@@ -781,6 +786,10 @@ define([
       self.positionModal();
       registry.scan(self.$modal);
       self.trigger('afterDraw');
+
+      // This is a giant hack, re-append the javascript to *nothing* so inline
+      // javascript can re-run
+      var foo = $('<div />').append($(utils.parseBodyTag(response)));
     }
   });
 
