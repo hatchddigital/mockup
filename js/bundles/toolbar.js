@@ -601,6 +601,46 @@ define([
       });
 
 
+    $('.open-structure-overlay').unbind('click').click(function(e) {
+        e.preventDefault();
+        try {
+            var $foo = $('<div id="content"><div class="pat-structure"' +
+                                        'data-pat-structure="vocabularyUrl:http://127.0.0.1:8080/MRA/@@getVocabulary?name=plone.app.vocabularies.Catalog;' +
+                                        'uploadUrl:http://127.0.0.1:8080/MRA/@@fileUpload;' +
+                                        'moveUrl:/moveitem;' +
+                                        'tagsVocabularyUrl:/select2-test.json;' +
+                                        'usersVocabularyUrl:/tests/json/users.json;' +
+                                        'indexOptionsUrl:/tests/json/queryStringCriteria.json;' +
+                                        'useMenuinputSelector:' + $(this).data('input-selector') + ';' +
+                                        '"></div></div>');
+            $(this).parent().append($foo);
+            var $structure = $('.pat-structure', $foo);
+            if ($structure.length === 1) {
+              var $container = $structure.parents('#content');
+              if ($container.length === 0) {
+                // uh oh, no content id, let's go up a few levels and use that as parent
+                $container = $structure.parent().parent();
+              }
+              var $modal = $container.patternModal({
+                position: 'middle top',
+                width: '95%',
+                title: 'Folder Contents S',
+                backdropOptions: {
+                  closeOnEsc: false,
+                  closeOnClick: false
+                }
+              });
+              var modal = $modal.data('pattern-modal');
+              modal.show();
+            }
+        }
+        catch(ex) {
+            console.log('Failed to open structure overlay');
+            console.log(ex);
+            console.log(ex.message);
+        }
+    });
+
       // XXX important, run pattern mods against overlays
       $('body').on('rendered.modal.patterns', function(){
         (new Toolbar($(this))); // just run init again...

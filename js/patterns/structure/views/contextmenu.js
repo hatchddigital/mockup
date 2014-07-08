@@ -40,7 +40,8 @@ define([
       'click .move-top a': 'moveTopClicked',
       'click .move-bottom a': 'moveBottomClicked',
       'click .set-default-page a': 'setDefaultPageClicked',
-      'click .open': 'openClicked'
+      'click .open': 'openClicked',
+      'click .use': 'useClicked'
     },
     template: _.template(
       '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">' +
@@ -51,6 +52,7 @@ define([
           '<li class="move-bottom"><a href="#">Move to bottom of folder</a></li>' +
           '<li class="set-default-page"><a href="#">Set as default page</a></li>' +
           '<li class="open"><a href="#">Open</a></li>' +
+          '<li class="use"><a href="#">Use</a></li>' +
       '</ul>'),
     active: null,
     initialize: function(){
@@ -73,6 +75,7 @@ define([
       self.$moveTop = self.$('.move-top');
       self.$moveBottom = self.$('.move-bottom');
       self.$setDefaultPage = self.$('.set-default-page');
+      self.$use = self.$('.use');
 
       return this;
     },
@@ -187,6 +190,25 @@ define([
       }else{
         win.location = url;
       }
+    },
+    useClicked: function(e){
+      e.preventDefault();
+      var self = this;
+      var uid = self.$active.attr('data-UID');
+      var model = self.app.collection.findWhere({UID: uid});
+      if (!self.app.useMenuinputSelector) {
+        window.alert('Not implemented for this view.');
+        return;
+      }
+      // console.log('Somwhow get the following values back to form.');
+      // console.log(uid);
+      // console.log(model);
+      // console.log(model.attributes.getURL);
+      $('input#' + self.app.useMenuinputSelector).val(model.attributes.getURL);
+
+      // self.app.$el.closest('.modal').data('patternModal').hide();
+      this.$el.closest('.modal').find('.modal-header .close').click();
+      return false;
     }
   });
 

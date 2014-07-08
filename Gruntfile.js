@@ -185,7 +185,8 @@ module.exports = function(grunt) {
           name: 'node_modules/almond/almond.js',
           include: 'mockup-bundles-toolbar',
           insertRequire: ['mockup-bundles-toolbar'],
-          out: 'build/toolbar.min.js'
+          out: 'build/toolbar.min.js',
+          optimize: 'none'
         }
       }
     },
