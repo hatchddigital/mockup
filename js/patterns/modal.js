@@ -187,6 +187,10 @@ define([
           url = $action.parents('form').attr('action');
         }
 
+        if (typeof(window.new_tile_position) !== 'undefined') {
+            url = utils.updateQueryString('position', window.new_tile_position, url);
+        }
+
         // We want to trigger the form submit event but NOT use the default
         $form.on('submit', function(e){
           e.preventDefault();
