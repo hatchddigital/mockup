@@ -604,6 +604,10 @@ define([
     $('.open-structure-overlay').unbind('click').click(function(e) {
         e.preventDefault();
         try {
+            // Use this class mechanisim as ID's for elements are generated
+            // on the fly in the data grid.
+            $('.structure-overlay-open').removeClass('structure-overlay-open');
+            $(this).addClass('structure-overlay-open');
             var $foo = $('<div id="content"><div class="pat-structure"' +
                                         'data-pat-structure="vocabularyUrl:http://127.0.0.1:8080/MRA/@@getVocabulary?name=plone.app.vocabularies.Catalog;' +
                                         'uploadUrl:http://127.0.0.1:8080/MRA/@@fileUpload;' +
@@ -611,7 +615,6 @@ define([
                                         'tagsVocabularyUrl:/select2-test.json;' +
                                         'usersVocabularyUrl:/tests/json/users.json;' +
                                         'indexOptionsUrl:/tests/json/queryStringCriteria.json;' +
-                                        'useMenuinputSelector:' + $(this).data('input-selector') + ';' +
                                         '"></div></div>');
             $(this).parent().append($foo);
             var $structure = $('.pat-structure', $foo);

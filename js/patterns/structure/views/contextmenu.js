@@ -196,15 +196,12 @@ define([
       var self = this;
       var uid = self.$active.attr('data-UID');
       var model = self.app.collection.findWhere({UID: uid});
-      if (!self.app.useMenuinputSelector) {
-        window.alert('Not implemented for this view.');
-        return;
-      }
+
       // console.log('Somwhow get the following values back to form.');
       // console.log(uid);
       // console.log(model);
       // console.log(model.attributes.getURL);
-      $('input#' + self.app.useMenuinputSelector).val(model.attributes.getURL);
+      $('.structure-overlay-open').parent().find('input').val(model.attributes.getURL);
 
       // self.app.$el.closest('.modal').data('patternModal').hide();
       this.$el.closest('.modal').find('.modal-header .close').click();
