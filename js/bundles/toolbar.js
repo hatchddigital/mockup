@@ -608,13 +608,21 @@ define([
             // on the fly in the data grid.
             $('.structure-overlay-open').removeClass('structure-overlay-open');
             $(this).addClass('structure-overlay-open');
+            var base_path = $(this).data('basepath');
+            if (base_path.substr(-1) !== '/') {
+                base_path += '/';
+            }
+
             var $foo = $('<div id="content"><div class="pat-structure"' +
-                                        'data-pat-structure="vocabularyUrl:http://127.0.0.1:8080/MRA/@@getVocabulary?name=plone.app.vocabularies.Catalog;' +
-                                        'uploadUrl:http://127.0.0.1:8080/MRA/@@fileUpload;' +
-                                        'moveUrl:/moveitem;' +
-                                        'tagsVocabularyUrl:/select2-test.json;' +
-                                        'usersVocabularyUrl:/tests/json/users.json;' +
-                                        'indexOptionsUrl:/tests/json/queryStringCriteria.json;' +
+                                        'data-pat-structure="' +
+                                        'vocabularyUrl:' + base_path + '@@getVocabulary?name=plone.app.vocabularies.Catalog;' +
+                                        'uploadUrl:' + base_path + '{path}/fileUpload;' +
+                                        'moveUrl:{path}/fc-itemOrder;' +
+                                        'basePath:' + base_path + ';' +
+                                        'tagsVocabularyUrl:' + base_path + '@@getVocabulary?name=plone.app.vocabularies.Keywords;' +
+                                        'usersVocabularyUrl:' + base_path + '@@getVocabulary?name=plone.app.vocabularies.Users;' +
+                                        'contextInfoUrl:' + base_path + '{path}/@@fc-contextInfo;' +
+                                        'indexOptionsUrl:' + base_path + '@@qsOptions;' +
                                         '"></div></div>');
             $(this).parent().append($foo);
             var $structure = $('.pat-structure', $foo);
@@ -625,9 +633,9 @@ define([
                 $container = $structure.parent().parent();
               }
               var $modal = $container.patternModal({
-                position: 'middle top',
+                position: 'middle',
                 width: '95%',
-                title: 'Folder Contents S',
+                title: 'Folder Contents',
                 backdropOptions: {
                   closeOnEsc: false,
                   closeOnClick: false
