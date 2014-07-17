@@ -667,6 +667,11 @@ define([
     registry.scan($('body'));
     Router.redirect();
     Router.start();
+
+    // Let the parent know that we're ready.
+    if (typeof(window.parent.window.onToolBarLoaded) != 'undefined') {
+        window.parent.window.onToolBarLoaded();
+    }
   }
 
   return Toolbar;

@@ -196,14 +196,7 @@ define([
       var self = this;
       var uid = self.$active.attr('data-UID');
       var model = self.app.collection.findWhere({UID: uid});
-
-      // console.log('Somwhow get the following values back to form.');
-      // console.log(uid);
-      // console.log(model);
-      // console.log(model.attributes.getURL);
-      $('.structure-overlay-open').parent().find('input').val(model.attributes.getURL);
-
-      // self.app.$el.closest('.modal').data('patternModal').hide();
+      $('.structure-overlay-open').parent().find('input').val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')');
       this.$el.closest('.modal').find('.modal-header .close').click();
       return false;
     }

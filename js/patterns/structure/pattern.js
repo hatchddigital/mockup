@@ -84,31 +84,30 @@ define([
           url: '/copy'
         },{
           title: 'Paste',
-          url: '/paste'
+          url: '/MRA/@@fc-paste'
         },{
           title: 'Delete',
-          url: '/delete',
+          url: '/MRA/@@fc-delete',
           context: 'danger'
         }],
         secondary: [{
           title: 'Workflow',
-          url: '/workflow'
+          url: '/MRA/@@fc-workflow'
         },{
           title: 'Tags',
-          url: '/tags'
+          url: '/MRA/@@fc-tags'
         },{
           title: 'Properties',
-          url: '/properties'
+          url: '/MRA/@@fc-properties'
         },{
           title: 'Rename',
-          url: '/rename'
+          url: '/MRA/@@fc-rename'
         }]
       }
     },
     init: function() {
       var self = this;
       self.browsing = true; // so all queries will be correct with QueryHelper
-
       self.options.collectionUrl = self.options.vocabularyUrl;
       self.options.queryHelper = new QueryHelper(self.$el,
         $.extend(true, {}, self.options, {basePattern: self}));
