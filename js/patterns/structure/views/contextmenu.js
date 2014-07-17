@@ -196,7 +196,7 @@ define([
       var self = this;
       var uid = self.$active.attr('data-UID');
       var model = self.app.collection.findWhere({UID: uid});
-      $('.structure-overlay-open').parent().find('input').val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')');
+      $('.structure-overlay-open').parent().find('input').val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')').trigger('change.dgf');
       this.$el.closest('.modal').find('.modal-header .close').click();
       return false;
     }
