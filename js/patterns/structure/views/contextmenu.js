@@ -201,7 +201,9 @@ define([
       // console.log(uid);
       // console.log(model);
       // console.log(model.attributes.getURL);
-      $('.structure-overlay-open').parent().find('input').val(model.attributes.getURL);
+      $('.structure-overlay-open').parent().find('input')
+        .val(model.attributes.getURL)
+        .trigger('change.dgf');
 
       // self.app.$el.closest('.modal').data('patternModal').hide();
       this.$el.closest('.modal').find('.modal-header .close').click();
