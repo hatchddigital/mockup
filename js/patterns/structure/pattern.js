@@ -54,7 +54,8 @@ define([
       activeColumns: [
         'ModificationDate',
         'EffectiveDate',
-        'review_state'
+        'review_state',
+        'Type'
       ],
       availableColumns: {
         'ModificationDate': 'Last modified',

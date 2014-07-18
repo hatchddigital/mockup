@@ -193,10 +193,21 @@ define([
     },
     useClicked: function(e){
       e.preventDefault();
+
       var self = this;
+      var $input = $('.structure-overlay-open').parent().find('input');
       var uid = self.$active.attr('data-UID');
       var model = self.app.collection.findWhere({UID: uid});
-      $('.structure-overlay-open').parent().find('input').val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')').trigger('change.dgf');
+      var allowedTypes = $('.structure-overlay-open').data('allowed-types');
+
+      if (allowedTypes) {
+        if ($.inArray(model.attributes.Type, allowedTypes.split(', ')) === -1) {
+            window.alert('The selected item must be of type ' + allowedTypes + ' not ' + model.attributes.Type);
+            return;
+        }
+      }
+
+      $input.val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')').trigger('change.dgf');
       this.$el.closest('.modal').find('.modal-header .close').click();
       return false;
     }
