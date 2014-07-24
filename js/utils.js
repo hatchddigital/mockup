@@ -33,10 +33,14 @@ define([
 
   var utils = {
 
-    parseBodyTag: function(txt){
-      return (/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[1];
-      return $((/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[0]
-          .replace('<body', '<div').replace('</body>', '</div>')).eq(0).html();
+    parseBodyTag: function(txt, strip_scripts){
+        if (strip_scripts) {
+            return $((/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[0]
+                   .replace('<body', '<div').replace('</body>', '</div>')).eq(0).html();
+        }
+        else {
+            return (/<body[^>]*>((.|[\n\r])*)<\/body>/im).exec(txt)[1];
+        }
     },
     setId: function($el, prefix){
       if(prefix === undefined){

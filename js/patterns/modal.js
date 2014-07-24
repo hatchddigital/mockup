@@ -554,7 +554,7 @@ define([
         self.$loading.hide();
         // This is flawed, if the body contains <script> tags they're executed
         // before being appended to the body, any $('#id') targets wont work
-        self.$raw = $('<div />').append($(utils.parseBodyTag(response)));
+        self.$raw = $('<div />').append($(utils.parseBodyTag(response, true)));
         self.trigger('after-ajax', self, textStatus, xhr);
         self._show();
         // This is a giant hack, re-append the javascript to *nothing* so inline
@@ -785,7 +785,7 @@ define([
       var self = this;
       self.trigger('beforeDraw');
       self.$modal.remove();
-      self.$raw = $('<div />').append($(utils.parseBodyTag(response)));
+      self.$raw = $('<div />').append($(utils.parseBodyTag(response, true)));
       self.render.apply(self, [options || self.options]);
       self.positionModal();
       registry.scan(self.$modal);
