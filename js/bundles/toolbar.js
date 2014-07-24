@@ -668,10 +668,8 @@ define([
     Router.redirect();
     Router.start();
 
-    // Let the parent know that we're ready.
-    if (typeof(window.parent.window.onToolBarLoaded) != 'undefined') {
-        window.parent.window.onToolBarLoaded();
-    }
+        // Let the parent know that we're ready.
+    window.parent.window.toolbarLoaded = true;
   }
 
   return Toolbar;
