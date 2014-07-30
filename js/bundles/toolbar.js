@@ -667,6 +667,9 @@ define([
     registry.scan($('body'));
     Router.redirect();
     Router.start();
+
+        // Let the parent know that we're ready.
+    window.parent.window.toolbarLoaded = true;
   }
 
   return Toolbar;
