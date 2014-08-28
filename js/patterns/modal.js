@@ -210,7 +210,10 @@ define([
               } else if (options.onError) {
                 options.onError(xhr, textStatus, errorStatus);
               } else {
-                console.log('error happened do something');
+                window.alert('error occured, check console');
+                console.log(xhr);
+                console.log(textStatus);
+                console.log(errorStatus);
               }
               self.trigger('formActionError', [xhr, textStatus, errorStatus]);
             },
@@ -286,7 +289,10 @@ define([
             } else if (options.onError) {
               options.onError(xhr, textStatus, errorStatus);
             } else {
-              console.log('error happened do something');
+                window.alert('error occured, check console');
+                console.log(xhr);
+                console.log(textStatus);
+                console.log(errorStatus);
             }
             self.$loading.hide();
             self.trigger('linkActionError', [xhr, textStatus, errorStatus]);
