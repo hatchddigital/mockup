@@ -446,9 +446,9 @@ define([
           .on('click', function(e) {
             e.stopPropagation();
             e.preventDefault();
-            if (self.options.backdropOptions.closeOnClick) {
-              self.backdrop.hide();
-            }
+            // if (self.options.backdropOptions.closeOnClick) {
+            //   self.backdrop.hide();
+            // }
           });
       }
 
@@ -459,21 +459,21 @@ define([
         }, self, self.options.routerOptions.pathExp);
       }
 
-      self.backdrop.on('hidden', function(e) {
-        if (self.$modal !== undefined && self.$modal.hasClass(self.options.templateOptions.classActiveName)) {
-          self.hide();
-        }
-      });
+      // self.backdrop.on('hidden', function(e) {
+      //   if (self.$modal !== undefined && self.$modal.hasClass(self.options.templateOptions.classActiveName)) {
+      //     self.hide();
+      //   }
+      // });
 
-      if (self.options.backdropOptions.closeOnEsc === true) {
-        $(document).on('keydown', function(e, data) {
-          if (self.$el.is('.' + self.options.templateOptions.classActiveName)) {
-            if (e.keyCode === 27) {  // ESC key pressed
-              self.hide();
-            }
-          }
-        });
-      }
+      // if (self.options.backdropOptions.closeOnEsc === true) {
+      //   $(document).on('keydown', function(e, data) {
+      //     if (self.$el.is('.' + self.options.templateOptions.classActiveName)) {
+      //       if (e.keyCode === 27) {  // ESC key pressed
+      //         self.hide();
+      //       }
+      //     }
+      //   });
+      // }
 
       self.$wrapperInner = $('> .' + self.options.templateOptions.classWrapperInnerName, self.$wrapper);
       if (self.$wrapperInner.size() === 0) {
