@@ -186,7 +186,8 @@ module.exports = function(grunt) {
           include: 'mockup-bundles-toolbar',
           insertRequire: ['mockup-bundles-toolbar'],
           out: 'build/toolbar.min.js',
-          optimize: 'none'
+          preserveLicenseComments: false
+          // optimize: 'none'
         }
       }
     },

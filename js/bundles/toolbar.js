@@ -612,7 +612,6 @@ define([
             if (base_path.substr(-1) !== '/') {
                 base_path += '/';
             }
-
             var $foo = $('<div id="content"><div class="pat-structure"' +
                                         'data-pat-structure="' +
                                         'vocabularyUrl:' + base_path + '@@getVocabulary?name=plone.app.vocabularies.Catalog;' +
@@ -643,6 +642,7 @@ define([
               });
               var modal = $modal.data('pattern-modal');
               modal.show();
+              modal.$modal.addClass('structure-widget-modal');
             }
         }
         catch(ex) {

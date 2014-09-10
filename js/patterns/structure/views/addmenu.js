@@ -66,7 +66,10 @@ define([
     },
     buttonClicked: function(e, button){
       var self = this;
+      var $blocker = $('<div class="fullpage-blocker"></div>');
       e.preventDefault();
+
+      $('body').append($blocker);
 
       $.ajax({
         url: button.url,
@@ -103,6 +106,7 @@ define([
             },
           });
           modal.show();
+          $blocker.remove();
         },
         error: function(){
           // XXX handle error
