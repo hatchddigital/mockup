@@ -41,7 +41,8 @@ define([
       'click .move-bottom a': 'moveBottomClicked',
       'click .set-default-page a': 'setDefaultPageClicked',
       'click .open': 'openClicked',
-      'click .use': 'useClicked'
+      'click .use': 'useClicked',
+      'click .edit': 'editClicked'
     },
     template: _.template(
       '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">' +
@@ -53,6 +54,7 @@ define([
           '<li class="set-default-page"><a href="#">Set as default page</a></li>' +
           '<li class="open"><a href="#">Open</a></li>' +
           '<li class="use"><a href="#">Use</a></li>' +
+          '<li class="edit"><a href="#">Edit</a></li>' +
       '</ul>'),
     active: null,
     initialize: function(){
@@ -76,6 +78,11 @@ define([
       self.$moveBottom = self.$('.move-bottom');
       self.$setDefaultPage = self.$('.set-default-page');
       self.$use = self.$('.use');
+      self.$edit = self.$('.edit');
+
+      if (!$('.structure-overlay-open').length) {
+        self.$use.remove();
+      }
 
       return this;
     },
@@ -210,6 +217,13 @@ define([
       $input.val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + uid + ')').trigger('change.dgf');
       this.$el.closest('.modal').find('.modal-header .close').click();
       return false;
+    },
+    editClicked: function(e){
+      e.preventDefault();
+      var self = this;
+      var uid = self.$active.attr('data-UID');
+      var model = self.app.collection.findWhere({UID: uid});
+      window.open(model.attributes.getURL + '/view#!/modal:edit', 'blank');
     }
   });
 
