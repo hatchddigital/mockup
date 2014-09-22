@@ -199,7 +199,7 @@ define([
 
         self.showLoading(false);
         $form.ajaxSubmit({
-          timeout: (20 * 1000),
+          timeout: (120 * 1000),
           data: extraData,
           url: url,
             error: function(xhr, textStatus, errorStatus) {
@@ -210,7 +210,7 @@ define([
               } else if (options.onError) {
                 options.onError(xhr, textStatus, errorStatus);
               } else {
-                window.alert('error occured, check console');
+                window.alert('This request has timed out - the action you have requested may have gone through, please check before re-submitting.');
                 console.log(xhr);
                 console.log(textStatus);
                 console.log(errorStatus);
@@ -289,7 +289,7 @@ define([
             } else if (options.onError) {
               options.onError(xhr, textStatus, errorStatus);
             } else {
-                window.alert('error occured, check console');
+                window.alert('This request has timed out - the action you have requested may have gone through, please check before re-submitting.');
                 console.log(xhr);
                 console.log(textStatus);
                 console.log(errorStatus);
@@ -766,6 +766,11 @@ define([
         self.positionModal();
       });
       self.trigger('shown');
+
+      // Allow scripts to hook into this function
+      if (window.toolbarmodalopencallback) {
+        window.toolbarmodalopencallback();
+      }
     },
     hide: function() {
       var self = this;
@@ -800,6 +805,11 @@ define([
       // This is a giant hack, re-append the javascript to *nothing* so inline
       // javascript can re-run
       var foo = $('<div />').append($(utils.parseBodyTag(response)));
+
+      // Allow scripts to hook into this function
+      if (window.toolbarmodalopencallback) {
+        window.toolbarmodalopencallback();
+      }
     }
   });
 

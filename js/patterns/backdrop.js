@@ -53,22 +53,22 @@ define([
           self.$backdrop.css('z-index', self.options.zIndex);
         }
       }
-      // if (self.options.closeOnEsc === true) {
-      //   $(document).on('keydown', function(e, data) {
-      //     if (self.$el.is('.' + self.options.classActiveName)) {
-      //       if (e.keyCode === 27) {  // ESC key pressed
-      //         self.hide();
-      //       }
-      //     }
-      //   });
-      // }
-      // if (self.options.closeOnClick === true) {
-      //   self.$backdrop.on('click', function() {
-      //     if (self.$el.is('.' + self.options.classActiveName)) {
-      //       self.hide();
-      //     }
-      //   });
-      // }
+      if (self.options.closeOnEsc === true) {
+        $(document).on('keydown', function(e, data) {
+          if (self.$el.is('.' + self.options.classActiveName)) {
+            if (e.keyCode === 27) {  // ESC key pressed
+              self.hide();
+            }
+          }
+        });
+      }
+      if (self.options.closeOnClick === true) {
+        self.$backdrop.on('click', function() {
+          if (self.$el.is('.' + self.options.classActiveName)) {
+            self.hide();
+          }
+        });
+      }
     },
     show: function() {
       var self = this;
