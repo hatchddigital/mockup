@@ -249,10 +249,6 @@ window.IFrame.prototype = {
     } else if(self.options.position === 'bottom') {
         self.el.setAttribute('style', self.el.getAttribute('style') +
             'bottom:0px;');
-        document.body.setAttribute('style',
-            (document.body.getAttribute('style') || '') +
-            ';border-bottom:0' +
-            ';margin-bottom:' + self.el.offsetHeight + 'px;');
     }
 
   }
