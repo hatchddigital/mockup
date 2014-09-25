@@ -246,11 +246,6 @@ window.IFrame.prototype = {
     if (self.options.position === 'top') {
         self.el.setAttribute('style', self.el.getAttribute('style') +
             'top:0px;');
-        document.body.setAttribute('style',
-            (document.body.getAttribute('style') || '') +
-            ';border-top:0' +
-            ';margin-top:' + self.el.offsetHeight + 'px;');
-
     } else if(self.options.position === 'bottom') {
         self.el.setAttribute('style', self.el.getAttribute('style') +
             'bottom:0px;');
