@@ -128,7 +128,6 @@ define([
     },
 
     fit: function() {
-        alert('shaun');
       var self = this;
       if (!self.is_stretched) {
         self.$el.css({ height: $('body', document).height() });
