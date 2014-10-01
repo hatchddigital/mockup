@@ -21,6 +21,9 @@
     <tr>
       <th><input type="checkbox" class="select-all" /></th>
       <th>Title</th>
+      <% if(showUseMenu){ %>
+        <th>Use</th>
+      <% } %>
       <% _.each(activeColumns, function(column){ %>
         <% if(_.has(availableColumns, column)) { %>
           <th><%- availableColumns[column] %></th>

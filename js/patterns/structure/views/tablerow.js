@@ -52,6 +52,7 @@ define([
       data.attributes = this.model.attributes;
       data.activeColumns = this.app.activeColumns;
       data.availableColumns = this.app.availableColumns;
+      data.showUseMenu = ($('.structure-overlay-open').length > 0);
       this.$el.html(this.template(data));
       var attrs = this.model.attributes;
       this.$el.addClass('state-' + attrs.review_state).
@@ -68,6 +69,13 @@ define([
       return this;
     },
     itemClicked: function(e){
+      if ($(e.target).hasClass('use')) {
+        e.preventDefault();
+        var self = this;
+        window.useClicked(this.model, self);
+        return false;
+      }
+
       /* check if this should just be opened in new window */
       var keyEvent = this.app.keyEvent;
       if(keyEvent && keyEvent.ctrlKey){

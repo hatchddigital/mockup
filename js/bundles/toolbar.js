@@ -617,6 +617,18 @@ define([
             if (base_path.substr(-1) !== '/') {
                 base_path += '/';
             }
+            window.useClicked = function(model, context) {
+              var $input = $('.structure-overlay-open').parent().find('input');
+              var allowedTypes = $('.structure-overlay-open').data('allowed-types');
+              if (allowedTypes) {
+                if ($.inArray(model.attributes.Type, allowedTypes.split(', ')) === -1) {
+                    window.alert('The selected item must be of type ' + allowedTypes + ' not ' + model.attributes.Type);
+                    return;
+                }
+              }
+              $input.val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + model.uid() + ')').trigger('change.dgf');
+              context.$el.closest('.modal').find('.modal-header .close').click();
+            };
             var $foo = $('<div id="content"><div class="pat-structure"' +
                                         'data-pat-structure="' +
                                         'vocabularyUrl:' + base_path + '@@getVocabulary?name=plone.app.vocabularies.Catalog;' +

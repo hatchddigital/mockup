@@ -11,6 +11,9 @@
     <%- Title %>
   <% } %>
 </td>
+<% if(showUseMenu){ %>
+    <td><a href="#" class="use">Use</a></td>
+<% } %>
 <% _.each(activeColumns, function(column){ %>
   <% if(_.has(availableColumns, column)) { %>
     <td class="<%- column %>"><%- attributes[column] %></td>

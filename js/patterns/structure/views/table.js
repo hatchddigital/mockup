@@ -70,6 +70,7 @@ define([
       self.$el.html(self.template({
         pathParts: self.app.queryHelper.getCurrentPath().split('/').slice(1),
         status: self.app.status,
+        showUseMenu: ($('.structure-overlay-open').length > 0),
         statusType: self.app.statusType,
         activeColumns: self.app.activeColumns,
         availableColumns: self.app.availableColumns
