@@ -601,6 +601,11 @@ define([
       });
 
 
+    $('.structure-clear').unbind('click').click(function(e) {
+        e.preventDefault();
+        $(this).parent().find('input.structure-widget').val('');
+        $(this).parent().find('.current-selection').text('-- cleared --');
+    });
     $('.open-structure-overlay').unbind('click').click(function(e) {
         e.preventDefault();
         try {
