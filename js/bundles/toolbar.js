@@ -316,6 +316,7 @@ define([
             onSuccess: function(modal, responseBody, state, xhr, form) {
                 window.parent.location = modal.options.ajaxUrl.split('/').slice(0, -2).join('/');
             }
+          }
         });
 
       // Dropdown {{{
