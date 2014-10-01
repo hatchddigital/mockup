@@ -85,24 +85,24 @@ define([
           url: '/copy'
         },{
           title: 'Paste',
-          url: '/MRA/@@fc-paste'
+          url: window.site_root + '@@fc-paste'
         },{
           title: 'Delete',
-          url: '/MRA/@@fc-delete',
+          url: window.site_root + '@@fc-delete',
           context: 'danger'
         }],
         secondary: [{
           title: 'Workflow',
-          url: '/MRA/@@fc-workflow'
+          url: window.site_root + '@@fc-workflow'
         },{
           title: 'Tags',
-          url: '/MRA/@@fc-tags'
+          url: window.site_root + '@@fc-tags'
         },{
           title: 'Properties',
-          url: '/MRA/@@fc-properties'
+          url: window.site_root + '@@fc-properties'
         },{
           title: 'Rename',
-          url: '/MRA/@@fc-rename'
+          url: window.site_root + '@@fc-rename'
         }]
       }
     },

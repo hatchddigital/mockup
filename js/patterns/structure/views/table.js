@@ -97,7 +97,9 @@ define([
         selector: '.ModificationDate,.EffectiveDate,.CreationDate',
         format: 'relative'
       });
-      self.addReordering();
+      if (!$('.structure-overlay-open').length) {
+        self.addReordering();
+      }
       self.storeOrder();
       return this;
     },
