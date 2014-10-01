@@ -85,6 +85,15 @@ define([
       if(self.collection.length){
         var container = self.$('tbody');
         self.collection.each(function(result){
+
+          if ($('.structure-overlay-open') && $('.structure-overlay-open').data('allowed-types')) {
+            if (!result.attributes.is_folderish) {
+                if ($.inArray(result.attributes.Type, $('.structure-overlay-open').data('allowed-types').split(', ')) === -1) {
+                    return;
+                }
+            }
+          }
+
           var view = (new TableRowView({
             model: result,
             app: self.app
