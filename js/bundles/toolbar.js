@@ -314,23 +314,8 @@ define([
         .patternModal({
           actionOptions: {
             onSuccess: function(modal, responseBody, state, xhr, form) {
-              modal.$el.on('afterDraw.modal.patterns', function(e){
-                // cleanup modal here, we only want to show the status
-                var $info = $('.portalMessage.info', modal.$modal);
-                if($info.length > 0){
-                  var $modalBody = $('.modal-body', modal.$modal);
-                  $modalBody.empty();
-                  $modalBody.append($info);
-                }
-              });
-              modal.redraw(responseBody);
-              modal.$el.on('hidden.modal.patterns', function(e) {
-                // We want to send the user to the containing folder *after* the status messages
-                // have been displayed, and the user has closed the modal
                 window.parent.location = modal.options.ajaxUrl.split('/').slice(0, -2).join('/');
-              });
             }
-          }
         });
 
       // Dropdown {{{

@@ -131,7 +131,6 @@ define([
       var self = this;
       if (!self.is_stretched) {
         self.$el.css({ height: $('body', document).height() });
-        $('body', self.document).css('margin-top', $('body', document).height());
       } else {
         self.$el.css({ height: $(self.document).height() });
       }
