@@ -591,6 +591,7 @@ define([
         e.preventDefault();
         $(this).parent().find('input.structure-widget').val('');
         $(this).parent().find('.current-selection').text('-- cleared --');
+        $(this).hide();
     });
     $('.open-structure-overlay').unbind('click').click(function(e) {
         e.preventDefault();
@@ -612,8 +613,9 @@ define([
                     return;
                 }
               }
-              $input.val(model.attributes.Title + ' (' + model.attributes.path + ') ' + model.attributes.getObjSize + ' uuid:(' + model.uid() + ')').trigger('change.dgf');
+              $input.val(model.attributes.path + ' uuid:(' + model.uid() + ')').trigger('change.dgf');
               context.$el.closest('.modal').find('.modal-header .close').click();
+              $input.parent().find('.structure-clear').show();
             };
             var $foo = $('<div id="content"><div class="pat-structure"' +
                                         'data-pat-structure="' +
@@ -646,6 +648,7 @@ define([
               var modal = $modal.data('pattern-modal');
               modal.show();
               modal.$modal.addClass('structure-widget-modal');
+              modal.$modal.find('.pat-structure').prepend($(this).parent().find('.structure_help').html());
             }
         }
         catch(ex) {
