@@ -488,8 +488,14 @@ define([
           displayInModal: false,
           redirectOnResponse: true,
           redirectToUrl: function($action, response, options) {
-            var $base = $(/<base.*?(\/>|<\/base>)/im.exec(response)[0]);
-            return $base.attr('href') + '/view';
+            var $response = $('<div />').html(response);
+            var $base = $('.skip-content-link', $response);
+            if ($base.length > 0 && $base.attr('base-href') !== undefined) {
+                return $base.attr('base-href') + '/view';
+            }
+            else {
+                return window.location.href;
+            }
           }
         },
         actions: {
