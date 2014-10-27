@@ -494,7 +494,7 @@ define([
                 return $base.attr('base-href') + '/view';
             }
             else {
-                return window.location.href;
+                return window.location.pathname;
             }
           }
         },
