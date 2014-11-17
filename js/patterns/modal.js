@@ -583,6 +583,9 @@ define([
       var $el = $(self.options.html);
       self.$raw = $el;
       self._show();
+
+      // Re-add to a virtual element so that javascript gets run.
+      $('<div />').append(self.$raw);
     },
     initModal: function() {
       var self = this;
