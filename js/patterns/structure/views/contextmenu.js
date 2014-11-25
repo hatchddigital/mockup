@@ -128,6 +128,9 @@ define([
         self.showHideButtons($el);
         self.$active = $el;
         $el.addClass('contextmenuactive');
+
+        // Sit the popup menu in the middle veritcally of the current cursor.
+        self.$el.css('top', $el.offset().top - $el.parents('.structure-dropzone').offset().top - ($('.contextmenu').height() / 2));
         return false;
       });
     },
