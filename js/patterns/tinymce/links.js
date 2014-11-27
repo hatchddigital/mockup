@@ -599,7 +599,7 @@ define([
         }
       } else if(href[0] === '#'){
         self.linkType = 'anchor';
-        self.linkTypes.anchor.setRaw(href.substring(1));
+        self.linkTypes.anchor.set(href.substring(1));
       } else {
         self.linkType = 'external';
         self.linkTypes.external.setRaw(href);
