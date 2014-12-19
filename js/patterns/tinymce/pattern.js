@@ -76,9 +76,7 @@ define([
       linkAttribute: 'path', // attribute to get link value from data
       prependToScalePart: '/imagescale/', // some value here is required to be able to parse scales back
       appendToScalePart: '',
-      scales: 'Listing (16x16):listing,Icon (32x32):icon,Tile (64x64):tile,' +
-              'Thumb (128x128):thumb,Mini (200x200):mini,Preview (400x400):preview,' +
-              'Large (768x768):large',
+      scales: 'Half Size (400x267):halfsize,Full Size (912x547):fullsize',
       targetList: [
         {text: 'Open in this window / frame', value: ''},
         {text: 'Open in new window', value: '_blank'},
@@ -275,7 +273,7 @@ define([
       tinyOptions.skin = false;
 
       self.options.relatedItems.generateImageUrl = function(data, scale){
-        // this is so, in our result and selection template, we can 
+        // this is so, in our result and selection template, we can
         // access getting actual urls from related items
         return self.generateImageUrl.apply(self, [data, scale]);
       };
