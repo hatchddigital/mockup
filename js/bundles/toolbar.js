@@ -415,13 +415,19 @@ define([
       }).on('show.modal.patterns', function(evt, modal) {
         $('a[href]', modal.$modal).each(function(){
           var href = this.href;
-          var parts = href.split('/');
-          parts.splice(parts.length-1, 0, '++nodiazo++');
-          href = parts.join('/');
+          var re = /\+\+nodiazo\+\+/;
+          if (false === re.test(href)) {
+              var parts = href.split('/');
+              parts.splice(parts.length-1, 0, '++nodiazo++');
+              href = parts.join('/');
+          }
 
           $(this).attr('href', href);
-          $(this).click(function(){
-            window.open(href);
+          $(this).click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            window.parent.location.href = href;
+            return false;
           });
         });
       });
