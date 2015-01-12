@@ -166,9 +166,12 @@ define([
       var self = this;
       var val = self.$select.select2('data');
       if(val && typeof(val) === 'object'){
-        val = val[0];
+        val = val['id'];
       }
       return val;
+    },
+    load: function(element){
+      this.set(this.anchorData[this.tiny.dom.getAttrib(element, 'data-val')].name);
     },
     populate: function(){
       var self = this;
@@ -252,7 +255,7 @@ define([
     },
     set: function(val){
       var anchor = this.getIndex(val);
-      this.$select.select2('data', '' + anchor);
+      this.$select.select2('val', '' + anchor);
     }
   });
 
@@ -596,7 +599,7 @@ define([
         }
       } else if(href[0] === '#'){
         self.linkType = 'anchor';
-        self.linkTypes.anchor.setRaw(href.substring(1));
+        self.linkTypes.anchor.set(href.substring(1));
       } else {
         self.linkType = 'external';
         self.linkTypes.external.setRaw(href);

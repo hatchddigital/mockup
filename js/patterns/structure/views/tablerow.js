@@ -90,6 +90,7 @@ define([
         // it's a folder, folder down path and show in contents window.
         e.preventDefault();
         this.app.queryHelper.currentPath = this.model.attributes.path;
+        this.app.collection.goTo(this.app.collection.information.firstPage);
         this.app.collection.pager();
       }
     },

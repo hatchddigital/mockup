@@ -587,6 +587,9 @@ define([
       var $el = $(self.options.html);
       self.$raw = $el;
       self._show();
+
+      // Re-add to a virtual element so that javascript gets run.
+      $('<div />').append(self.$raw);
     },
     initModal: function() {
       var self = this;
@@ -738,6 +741,13 @@ define([
                                   wrapperInnerWidth, wrapperInnerHeight);
       for(var key in pos) {
         self.$modal.css(key, pos[key]);
+      }
+
+
+      // Reassign the tinymce clicks to be where the editor is.
+      var $mce_container = self.$el.siblings('.mce-container');
+      if (self.$el.hasClass('active') && $mce_container.length) {
+        self.$modal.css('top', $mce_container[0].offsetTop + 60);
       }
     },
     render: function(options) {
