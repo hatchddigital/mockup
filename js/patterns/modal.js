@@ -190,6 +190,10 @@ define([
         if (typeof(window.new_tile_position) !== 'undefined') {
             url = utils.updateQueryString('position', window.new_tile_position, url);
         }
+        if (typeof(window.new_tile_region) !== 'undefined') {
+            url = utils.updateQueryString('region', window.new_tile_region, url);
+        }
+
 
         // We want to trigger the form submit event but NOT use the default
         $form.on('submit', function(e){
