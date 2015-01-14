@@ -129,8 +129,12 @@ define([
         self.$active = $el;
         $el.addClass('contextmenuactive');
 
+        var $cm = $('.contextmenu');
         // Sit the popup menu in the middle veritcally of the current cursor.
-        $('.contextmenu').css('top', $('.contextmenu').offset().top - ($('.contextmenu').height() / 2));
+        $cm.css('top', $cm.offset().top - ($cm.height() / 2));
+        if ($cm.height() + $cm.offset().top > $(window.parent).height()) {
+            $cm.css('top', $(window.parent).height() - $cm.height());
+        }
         return false;
       });
     },
