@@ -89,7 +89,7 @@ define([
       tiny: {
         plugins: [
           "advlist autolink lists charmap print preview anchor ploneupload",
-          "searchreplace visualblocks code fullscreen autoresize",
+          "searchreplace visualblocks code fullscreen",
           "insertdatetime media table contextmenu paste plonelink ploneimage"
         ],
         menubar: "edit table format tools view insert",
@@ -97,7 +97,8 @@ define([
                  "alignleft aligncenter alignright alignjustify | " +
                  "bullist numlist outdent indent | " +
                  "unlink plonelink ploneimage | ploneupload",
-        autoresize_max_height: 1500
+        autoresize_max_height: 1500,
+        height: 150
       },
       rel_upload_path: null,
       folder_url: null
