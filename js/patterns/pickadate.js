@@ -43,6 +43,7 @@ define([
         selectMonths: true
       },
       time: {
+        interval: 15
       },
       classWrapperName: 'pattern-pickadate-wrapper',
       classSeparatorName: 'pattern-pickadate-separator',
