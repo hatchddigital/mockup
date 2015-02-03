@@ -203,7 +203,7 @@ define([
 
         self.showLoading(false);
         $form.ajaxSubmit({
-          timeout: (120 * 1000),
+          timeout: (900 * 1000),
           data: extraData,
           url: url,
             error: function(xhr, textStatus, errorStatus) {
