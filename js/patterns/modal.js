@@ -416,6 +416,50 @@ define([
           .appendTo(self.$wrapperInner);
         self.$modal.data('pattern-' + self.name, self);
 
+
+        // Group categories and projects together to their parents so they expand
+        var $listing = $('[data-fieldname="form.widgets.ICategorization.categories"], [data-fieldname="form.widgets.IProjectLink.projects"]', self.$modal);
+        var $parent = null;
+        var parent_title = '';
+        $('.option', $listing).each(function(k, item) {
+            var $item = $(item);
+
+            var title = $('label span', $item).text();
+            if ($parent === null) {
+                parent_title = '';
+            }
+            else {
+                parent_title = $('> label > span', $parent).text();
+            }
+
+            // Check to see if our content starts with the parents name
+            var ex = '^' + parent_title + ':';
+            var re = new RegExp(ex);
+            if (re.test(title)) {
+                if ($('.sub-items', $parent).length === 0) {
+                    $parent.append($('<div class="sub-items" />'));
+                }
+
+                // Remove the sub category name.
+                $('label span', $item).text($('label span', $item).text().replace(parent_title + ': ', ''));
+                $('.sub-items', $parent).append($item);
+
+                // Add a class to the parent so we can do magic with it.
+                if ($('> .expander', $parent).length === 0) {
+                    var expander = $('<a href="#" class="expander"></a>')
+                        .click(function(e) {
+                            e.preventDefault();
+                            $(this).parents('.parent-item').toggleClass('state--active');
+                        })
+                        .insertAfter($('> input', $parent));
+                    $parent.addClass('parent-item');
+                }
+            }
+            else {
+                $parent = $item;
+            }
+        });
+
         self.trigger('after-render');
       }
     },
