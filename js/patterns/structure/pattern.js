@@ -37,6 +37,10 @@ define([
 ], function($, Base, QueryHelper, AppView) {
   "use strict";
 
+  if (typeof(window.site_root) == 'undefined') {
+    window.site_root = '';
+  }
+
   var Structure = Base.extend({
     name: 'structure',
     defaults: {
