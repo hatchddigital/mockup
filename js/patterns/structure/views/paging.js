@@ -58,6 +58,7 @@ define([
     render: function () {
       var data = this.collection.info();
       data.pages = this.getPages(data);
+      data.lastPage = data.pages.length;
       var html = this.template(data);
       this.$el.html(html);
       return this;
@@ -100,23 +101,38 @@ define([
     },
     nextResultPage: function (e) {
       e.preventDefault();
+      if ($(e.target).parent().hasClass('disabled')) {
+        return false;
+      }
       this.collection.requestNextPage();
     },
     previousResultPage: function (e) {
       e.preventDefault();
+      if ($(e.target).parent().hasClass('disabled')) {
+        return false;
+      }
       this.collection.requestPreviousPage();
     },
     gotoFirst: function (e) {
       e.preventDefault();
+      if ($(e.target).parent().hasClass('disabled')) {
+        return false;
+      }
       this.collection.goTo(this.collection.information.firstPage);
     },
     gotoLast: function (e) {
       e.preventDefault();
+      if ($(e.target).parent().hasClass('disabled')) {
+        return false;
+      }
       this.collection.goTo(this.collection.information.totalPages);
     },
     gotoPage: function (e) {
       e.preventDefault();
       var page = $(e.target).text();
+      if ($(e.target).parent().hasClass('disabled')) {
+        return false;
+      }
       this.collection.goTo(page);
     },
     changeCount: function (e) {
