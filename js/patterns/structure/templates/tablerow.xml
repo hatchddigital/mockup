@@ -5,8 +5,12 @@
         <span class="icon icon-folder-open"></span> <%- Title %>
     </a>
   <% } else { %>
-    <% if(['File', 'Image'].indexOf(attributes.Type) !== -1){ %>
-      <span class="icon icon-file"></span>
+    <% if(attributes.Type === 'Image'){ %>
+        <span class="icon icon-picture"></span>
+    <% } else { %>
+        <% if(attributes.Type === 'File'){ %>
+            <span class="icon icon-file"></span>
+        <% } %>
     <% } %>
     <%- Title %>
   <% } %>
