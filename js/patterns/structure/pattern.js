@@ -54,7 +54,7 @@ define([
       attributes: ['UID', 'Title', 'Type', 'path', 'review_state',
                    'ModificationDate', 'EffectiveDate', 'CreationDate',
                    'is_folderish', 'Subject', 'getURL', 'id', 'exclude_from_nav',
-                   'getObjSize', 'last_comment_date', 'total_comments'],
+                   'getObjSize', 'last_comment_date', 'total_comments', 'thumbnailURL'],
       activeColumns: [
         'ModificationDate',
         'EffectiveDate',

@@ -37,7 +37,9 @@ define([
     template: _.template(TableRowTemplate),
     events: {
       'change input': 'itemSelected',
-      'click a': 'itemClicked'
+      'click a': 'itemClicked',
+      'mousemove': 'rowHover',
+      'mouseout': 'rowOut'
     },
     initialize: function(){
       this.app = this.options.app;
@@ -65,8 +67,20 @@ define([
       this.$el.attr('data-id', data.id);
       this.$el.attr('data-type', data.Type);
       this.$el.attr('data-folderish', data.is_folderish);
+      this.$el.attr('data-thumbnail', data.thumbnailURL);
       this.el.model = this.model;
       return this;
+    },
+    rowOut: function(e) {
+        this.app.tableView.iconHover.hide();
+    },
+    rowHover: function(e) {
+        if (this.$el.hasClass('type-Image')) {
+            var $el = $('.js--thumbnail-thumb', this.$el);
+            if ($el.length) {
+                this.app.tableView.iconHover.setImage(this.$el.attr('data-thumbnail'), e);
+            }
+        }
     },
     itemClicked: function(e){
       if ($(e.target).hasClass('use')) {

@@ -23,6 +23,8 @@
 //
 
 
+
+
 define([
   'jquery',
   'underscore',
@@ -32,13 +34,15 @@ define([
   'js/patterns/structure/views/contextmenu',
   'js/ui/views/base',
   'mockup-patterns-dragdrop',
-  'mockup-patterns-moment'
+  'mockup-patterns-moment',
+  'js/patterns/structure/views/iconhover',
 ], function($, _, Backbone, TableRowView, TableTemplate, ContextMenu, BaseView,
-            DragDrop, Moment) {
+            DragDrop, Moment, IconHover) {
   "use strict";
 
   var TableView = BaseView.extend({
     tagName: 'div',
+    iconHover: null,
     template: _.template(TableTemplate),
     initialize: function(){
       var self = this;
@@ -58,6 +62,8 @@ define([
           $defaultPage.find('td.title').prepend('<span>*</span> ');
           $defaultPage.addClass('default-page');
         }
+
+        self.iconHover = new IconHover($('#thumbnail-hover', this.$el), this.$el);
       });
     },
     events: {
@@ -96,7 +102,8 @@ define([
 
           var view = (new TableRowView({
             model: result,
-            app: self.app
+            app: self.app,
+            iconHover: self.iconHover
           })).render();
           self.contextMenu.bind(view.$el);
           container.append(view.el);
@@ -175,3 +182,4 @@ define([
 
   return TableView;
 });
+
