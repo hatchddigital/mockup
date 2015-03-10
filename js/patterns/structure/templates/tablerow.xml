@@ -6,7 +6,11 @@
     </a>
   <% } else { %>
     <% if(attributes.Type === 'Image'){ %>
-        <span class="icon js--thumbnail-thumb" id="thumbnail-hover-thumb"><img src="<%- thumbnailURL %>" /></span>
+        <% if (typeof(thumbnailURL) !== 'undefined') { %>
+            <span class="icon js--thumbnail-thumb" id="thumbnail-hover-thumb"><img src="<%- thumbnailURL %>" /></span>
+        <% } else { %>
+           <span class="icon icon-picture"></span>
+        <% } %>
     <% } else { %>
         <% if(attributes.Type === 'File'){ %>
             <span class="icon icon-file"></span>
