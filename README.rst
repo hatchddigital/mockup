@@ -56,3 +56,8 @@ Status of builds
 .. image:: https://d2weczhvl823v0.cloudfront.net/plone/mockup/trend.png
    :target: https://bitdeli.com/free
    :alt: Bitdeli
+
+Compling
+----------------
+
+grunt compile-widgets; grunt compile-toolbar; cp build/toolbar.min.js ~/development/silverchain/silverchain-silverchain.org.au/src/hatchd.tiles/hatchd/tiles/static/toolbar.min.js
