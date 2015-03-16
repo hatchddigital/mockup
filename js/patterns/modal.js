@@ -451,9 +451,15 @@ define([
                             e.preventDefault();
                             $(this).parents('.parent-item').toggleClass('state--active');
                         })
-                        .insertAfter($('> input', $parent));
-                    $parent.addClass('parent-item');
+                        .insertAfter($('> label', $parent));
+                    $parent.addClass('parent-item clearfix');
                 }
+
+                $('input', $parent).on('change', function() {
+                    if($(this).is(':checked')) {
+                        $(this).parents('.parent-item').addClass('state--active');
+                    }
+                });
             }
             else {
                 $parent = $item;
